@@ -7,7 +7,6 @@ Conflicts with essentials.keepinv permission use combatkeepinv.alwayskeep instea
 
 Make sure you have Gamerule KeepInventory set to False.
 
-
 bStats:
 https://bstats.org/plugin/bukkit/CombatKeepInventory/10217
 
