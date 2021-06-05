@@ -6,7 +6,6 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
-import org.bukkit.entity.Zombie;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.PlayerDeathEvent;
@@ -133,6 +132,8 @@ public class Main extends JavaPlugin{
                 sender.sendMessage(ChatColor.DARK_GREEN + "Version: " + getDescription().getVersion());
             }
         }
+
+        // Coming Soon
         if (command.getName().equalsIgnoreCase("combatkeepinventorytoggle") || label.equalsIgnoreCase("ckitoggle")) {
             if (args.length == 0) {
                 // No arguments were provided, just "/ckitoggle"
