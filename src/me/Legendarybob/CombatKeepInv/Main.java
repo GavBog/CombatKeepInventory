@@ -115,9 +115,6 @@ public class Main extends JavaPlugin{
                     event.setKeepLevel(false);
                 }
             }
-            if (player1 instanceof Zombie){
-                getLogger().info("ZOMBIE KO");
-            }
         }
     }
 
