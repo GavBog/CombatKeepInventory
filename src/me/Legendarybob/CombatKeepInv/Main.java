@@ -117,6 +117,7 @@ public class Main extends JavaPlugin{
         }
     }
 
+    //commands
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (command.getName().equalsIgnoreCase("combatkeepinventoryreload") || label.equalsIgnoreCase("ckireload")) {
@@ -132,27 +133,41 @@ public class Main extends JavaPlugin{
                 sender.sendMessage(ChatColor.DARK_GREEN + "Version: " + getDescription().getVersion());
             }
         }
-
-        // Coming Soon
         if (command.getName().equalsIgnoreCase("combatkeepinventorytoggle") || label.equalsIgnoreCase("ckitoggle")) {
-            if (args.length == 0) {
-                // No arguments were provided, just "/ckitoggle"
-                sender.sendMessage(ChatColor.RED + "Do /ckitoggle player/natural");
-                return true;
-            }
-
-            if (args.length >= 1) {
-                // Some arguments were provided
-                if (args[0].equalsIgnoreCase("player")) {
-                    // The first argument is "player", therefore "/ckitoggle player"
-                    config = YamlConfiguration.loadConfiguration(cfile);
+            if (sender.hasPermission("combatkeepinv.toggle")) {
+                if (args.length == 0) {
+                    // No arguments were provided, just "/ckitoggle"
+                    sender.sendMessage(ChatColor.RED + "Do /ckitoggle player/natural");
                     return true;
                 }
-
-                if (args[0].equalsIgnoreCase("natural")) {
-                    // The first argument is "natural", therefore "/ckitoggle natural"
-                    config = YamlConfiguration.loadConfiguration(cfile);
-                    return true;
+                if (args.length >= 1) {
+                    // Some arguments were provided
+                    if (args[0].equalsIgnoreCase("player")) {
+                        // The first argument is "player", therefore "/ckitoggle player"
+                        if (Main.this.config.getBoolean("LoseToPlayer")) {
+                            this.getConfig().set("LoseToPlayer", Boolean.valueOf(false));
+                            this.saveConfig();
+                            sender.sendMessage(ChatColor.GOLD + "Players will no longer lose their items to other Players");
+                        } else {
+                            this.getConfig().set("LoseToPlayer", Boolean.valueOf(true));
+                            this.saveConfig();
+                            sender.sendMessage(ChatColor.GOLD + "Players will now lose their items to other Players");
+                        }
+                        config = YamlConfiguration.loadConfiguration(cfile);
+                    }
+                    if (args[0].equalsIgnoreCase("natural")) {
+                        // The first argument is "natural", therefore "/ckitoggle natural"
+                        if (Main.this.config.getBoolean("LoseToNatural")) {
+                            this.getConfig().set("LoseToNatural", Boolean.valueOf(false));
+                            this.saveConfig();
+                            sender.sendMessage(ChatColor.GOLD + "Players will no longer lose their items to Natural Causes");
+                        } else {
+                            this.getConfig().set("LoseToNatural", Boolean.valueOf(true));
+                            this.saveConfig();
+                            sender.sendMessage(ChatColor.GOLD + "Players will now lose their items to Natural Causes");
+                        }
+                        config = YamlConfiguration.loadConfiguration(cfile);
+                    }
                 }
             }
         }

@@ -16,6 +16,11 @@ commands:
     description: Check CombatKeepInventory Version
     permission: combatkeepinv.version
     aliases: ckiversion
+  combatkeepinventorytoggle:
+    description: Enable and Disable Parts of the plugin
+    permission: combatkeepinv.toggle
+    aliases: ckitoggle
+    usage: /<command> [player|natural]
 
 permissions:
   combatkeepinv.alwayskeep:
@@ -27,3 +32,9 @@ permissions:
   combatkeepinv.version:
     description: able to check plugin version
     default: true
+  combatkeepinv.toggle:
+    description: able to toggle features in the plugin
+    default: op
+  combatkeepinv.*:
+    description: wildcard permission
+    default: op
