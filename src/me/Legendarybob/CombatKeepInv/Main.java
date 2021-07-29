@@ -76,42 +76,33 @@ public class Main extends JavaPlugin{
                     if (player.hasPermission("combatkeepinv.alwayskeep")) {
                         event.setKeepInventory(true);
                         event.getDrops().clear();
-                        if (Main.this.config.getBoolean("KeepLevels")) {
-                            event.setKeepLevel(true);
-                        } else {
-                            event.setKeepLevel(false);
-                        }
                     } else {
                         event.setKeepInventory(false);
                     }
                 } else {
                     event.setKeepInventory(true);
                     event.getDrops().clear();
-                    if (Main.this.config.getBoolean("KeepLevels")) {
-                        event.setKeepLevel(true);
-                    } else {
-                        event.setKeepLevel(false);
-                    }
                 }
             } else if (Main.this.config.getBoolean("LoseToNatural")) {
                 if (player.hasPermission("combatkeepinv.alwayskeep")) {
                     event.setKeepInventory(true);
                     event.getDrops().clear();
-                    if (Main.this.config.getBoolean("KeepLevels")) {
-                        event.setKeepLevel(true);
-                    } else {
-                        event.setKeepLevel(false);
-                    }
                 } else {
                     event.setKeepInventory(false);
                 }
             } else {
                 event.setKeepInventory(true);
                 event.getDrops().clear();
-                if (Main.this.config.getBoolean("KeepLevels")) {
-                    event.setKeepLevel(true);
-                } else {
-                    event.setKeepLevel(false);
+            }
+
+            // Experience Levels
+            if (player.hasPermission("combatkeepinv.alwayskeep")) {
+                event.setKeepLevel(true);
+            } else {
+            if (Main.this.config.getBoolean("KeepLevels")) {
+                event.setKeepLevel(true);
+            } else {
+                event.setKeepLevel(false);
                 }
             }
         }
@@ -143,7 +134,7 @@ public class Main extends JavaPlugin{
                 if (args.length >= 1) {
                     // Some arguments were provided
                     if (args[0].equalsIgnoreCase("player")) {
-                        // The first argument is "player", therefore "/ckitoggle player"
+                        // The next argument is "player", therefore "/ckitoggle player"
                         if (Main.this.config.getBoolean("LoseToPlayer")) {
                             this.getConfig().set("LoseToPlayer", Boolean.valueOf(false));
                             this.saveConfig();
@@ -156,7 +147,7 @@ public class Main extends JavaPlugin{
                         config = YamlConfiguration.loadConfiguration(cfile);
                     }
                     if (args[0].equalsIgnoreCase("natural")) {
-                        // The first argument is "natural", therefore "/ckitoggle natural"
+                        // The next argument is "natural", therefore "/ckitoggle natural"
                         if (Main.this.config.getBoolean("LoseToNatural")) {
                             this.getConfig().set("LoseToNatural", Boolean.valueOf(false));
                             this.saveConfig();
@@ -165,6 +156,18 @@ public class Main extends JavaPlugin{
                             this.getConfig().set("LoseToNatural", Boolean.valueOf(true));
                             this.saveConfig();
                             sender.sendMessage(ChatColor.GOLD + "Players will now lose their items to Natural Causes");
+                        }
+                        config = YamlConfiguration.loadConfiguration(cfile);
+                    }
+                    if (args[0].equalsIgnoreCase("exp")) {
+                        if (Main.this.config.getBoolean("KeepLevels")) {
+                            this.getConfig().set("KeepLevels", Boolean.valueOf(false));
+                            this.saveConfig();
+                            sender.sendMessage(ChatColor.RED + "Players will now lose their levels on death");
+                        } else {
+                            this.getConfig().set("KeepLevels", Boolean.valueOf(true));
+                            this.saveConfig();
+                            sender.sendMessage(ChatColor.RED + "Players will no longer lose their levels on death");
                         }
                         config = YamlConfiguration.loadConfiguration(cfile);
                     }
