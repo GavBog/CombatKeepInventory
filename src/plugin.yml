@@ -28,6 +28,7 @@ permissions:
     default: op
   combatkeepinv.expkeep:
     description: always keep your EXP
+    default: op
   combatkeepinv.reload:
     description: able to reload the plugin
     default: op

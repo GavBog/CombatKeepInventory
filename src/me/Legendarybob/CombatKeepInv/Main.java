@@ -71,44 +71,54 @@ public class Main extends JavaPlugin{
         public void onPlayerDeath(PlayerDeathEvent event) {
             Player player = event.getEntity();
             Player player1 = player.getKiller();
-            if (player1 instanceof Player) {
-                if (Main.this.config.getBoolean("LoseToPlayer")) {
-                    if (player.hasPermission("combatkeepinv.alwayskeep")) {
-                        event.setKeepInventory(true);
-                        event.getDrops().clear();
-                    } else {
-                        event.setKeepInventory(false);
-                    }
-                } else {
-                    event.setKeepInventory(true);
-                    event.getDrops().clear();
-                }
-            } else if (Main.this.config.getBoolean("LoseToNatural")) {
-                if (player.hasPermission("combatkeepinv.alwayskeep")) {
-                    event.setKeepInventory(true);
-                    event.getDrops().clear();
-                } else {
-                    event.setKeepInventory(false);
-                }
-            } else {
+            if (player.hasPermission("combatkeepinv.alwayskeep")) {
                 event.setKeepInventory(true);
                 event.getDrops().clear();
+            } else {
+                if (player1 instanceof Player) {
+                if (Main.this.config.getBoolean("LoseToPlayer")) {
+                        event.setKeepInventory(false);
+                } else {
+                    event.setKeepInventory(true);
+                    event.getDrops().clear();
+                }
+            } else {
+                    if (Main.this.config.getBoolean("LoseToNatural")) {
+                            event.setKeepInventory(false);
+                    } else {
+                        event.setKeepInventory(true);
+                        event.getDrops().clear();
+                    }
+                }
             }
 
             // Experience Levels
-            if (player.hasPermission("combatkeepinv.alwayskeep")) {
+            if (player.hasPermission("combatkeepinv.expkeep") || player.hasPermission("combatkeepinv.alwayskeep")) {
                 event.setKeepLevel(true);
             } else {
             if (Main.this.config.getBoolean("KeepLevels")) {
-                event.setKeepLevel(true);
+                if (player1 instanceof Player) {
+                    if (Main.this.config.getBoolean("LoseToPlayer")) {
+                        event.setKeepLevel(false);
+                    } else {
+                        event.setKeepLevel(true);
+                    }
+            } else {
+                    if (Main.this.config.getBoolean("LoseToNatural")) {
+                        event.setKeepLevel(false);
+                    } else {
+                        event.setKeepLevel(true);
+                    }
+                }
             } else {
                 event.setKeepLevel(false);
                 }
             }
+
         }
     }
 
-    //commands
+    // commands
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (command.getName().equalsIgnoreCase("combatkeepinventoryreload") || label.equalsIgnoreCase("ckireload")) {
