@@ -181,6 +181,31 @@ public class Main extends JavaPlugin{
                         }
                         config = YamlConfiguration.loadConfiguration(cfile);
                     }
+                    if (args[0].equalsIgnoreCase("all")) {
+                        if (Main.this.config.getBoolean("LoseToNatural")) {
+                            this.getConfig().set("LoseToNatural", Boolean.valueOf(false));
+                            this.saveConfig();
+                        } else {
+                            this.getConfig().set("LoseToNatural", Boolean.valueOf(true));
+                            this.saveConfig();
+                        }
+                        if (Main.this.config.getBoolean("LoseToPlayer")) {
+                            this.getConfig().set("LoseToPlayer", Boolean.valueOf(false));
+                            this.saveConfig();
+                        } else {
+                            this.getConfig().set("LoseToPlayer", Boolean.valueOf(true));
+                            this.saveConfig();
+                        }
+                        if (Main.this.config.getBoolean("KeepLevels")) {
+                            this.getConfig().set("KeepLevels", Boolean.valueOf(false));
+                            this.saveConfig();
+                        } else {
+                            this.getConfig().set("KeepLevels", Boolean.valueOf(true));
+                            this.saveConfig();
+                        }
+                        sender.sendMessage(ChatColor.GOLD + "All options have been toggled");
+                        config = YamlConfiguration.loadConfiguration(cfile);
+                    }
                 }
             }
         }

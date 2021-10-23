@@ -77,7 +77,7 @@
         <dependency>
             <groupId>org.inventivetalent.spiget-update</groupId>
             <artifactId>bukkit</artifactId>
-            <version>1.4.3-SNAPSHOT</version>
+            <version>VERSION</version>
         </dependency>
 
     </dependencies>
