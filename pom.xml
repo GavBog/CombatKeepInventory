@@ -4,7 +4,7 @@
     <groupId>me.Legnedarybob.CombatKeepInv</groupId>
     <artifactId>CombatKeepInventory</artifactId>
 
-    <version>1.2.4</version>
+    <version>1.2.5</version>
 
     <name>CombatKeepInventory</name>
     <description>Keep your inventory if you are killed naturally, Lose your inventory if Killed by a Player</description>
@@ -54,8 +54,8 @@
                 <filtering>true</filtering>
             </resource>
         </resources>
-
     </build>
+
     <repositories>
         <repository>
             <id>spigot-repo</id>
