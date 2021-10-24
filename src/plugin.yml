@@ -1,6 +1,6 @@
 main: me.Legendarybob.CombatKeepInv.Main
 name: CombatKeepInventory
-version: 1.2.4
+version: 1.2.5
 description: Keep your inventory if you are killed naturally, Lose your inventory if Killed by a Player.
 api-version: 1.13
 author: Legendarybob13
@@ -20,7 +20,7 @@ commands:
     description: Enable and Disable Parts of the plugin
     permission: combatkeepinv.toggle
     aliases: ckitoggle
-    usage: /<command> [player|natural|exp]
+    usage: /<command> [player|natural|exp|all]
 
 permissions:
   combatkeepinv.alwayskeep:

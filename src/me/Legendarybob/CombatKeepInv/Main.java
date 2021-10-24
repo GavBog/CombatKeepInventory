@@ -138,7 +138,7 @@ public class Main extends JavaPlugin{
             if (sender.hasPermission("combatkeepinv.toggle")) {
                 if (args.length == 0) {
                     // No arguments were provided, just "/ckitoggle"
-                    sender.sendMessage(ChatColor.RED + "Do /ckitoggle player/natural");
+                    sender.sendMessage(ChatColor.RED + "Do /ckitoggle player/natural/exp/all");
                     return true;
                 }
                 if (args.length >= 1) {
