@@ -25,7 +25,7 @@ public class Main extends JavaPlugin{
         // Config
         this.config.addDefault("LoseToPlayer", Boolean.valueOf(true));
         this.config.addDefault("LoseToNatural", Boolean.valueOf(false));
-        this.config.addDefault("KeepLevels", Boolean.valueOf(false));
+        this.config.addDefault("KeepLevels", Boolean.valueOf(true));
         this.config.options().copyDefaults(true);
         saveConfig();
         cfile = new File(getDataFolder(), "config.yml");
