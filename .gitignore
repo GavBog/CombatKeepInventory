@@ -4,3 +4,4 @@ out
 .project
 .classpath
 .settings/
+target/

@@ -62,10 +62,10 @@
             <url>https://hub.spigotmc.org/nexus/content/repositories/snapshots/</url>
         </repository>
         <repository>
-            <id>inventive-repo</id>
-            <url>https://repo.inventivetalent.org/content/groups/public/</url>
+            <id>jitpack.io</id>
+            <url>https://jitpack.io</url>
         </repository>
-</repositories>
+    </repositories>
 
     <dependencies>
         <dependency>
@@ -75,10 +75,9 @@
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>org.inventivetalent.spiget-update</groupId>
+            <groupId>com.github.InventivetalentDev.Spiget-Update</groupId>
             <artifactId>bukkit</artifactId>
-            <version>VERSION</version>
+            <version>1.4.3-SNAPSHOT</version>
         </dependency>
-
     </dependencies>
 </project>
