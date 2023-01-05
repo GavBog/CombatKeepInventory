@@ -17,7 +17,7 @@ import org.inventivetalent.update.spiget.comparator.VersionComparator;
 
 import java.io.File;
 
-public class Main extends JavaPlugin{
+public class Main extends JavaPlugin {
     FileConfiguration config = getConfig();
     File cfile;
 
@@ -50,6 +50,7 @@ public class Main extends JavaPlugin{
                 getLogger().info("Download at " + downloadUrl);
                 getLogger().info("------------------------------------------------");
             }
+
             @Override
             public void upToDate() {
                 getLogger().info("------------------------------------------------");
@@ -76,15 +77,15 @@ public class Main extends JavaPlugin{
                 event.getDrops().clear();
             } else {
                 if (player1 instanceof Player) {
-                if (Main.this.config.getBoolean("LoseToPlayer")) {
+                    if (Main.this.config.getBoolean("LoseToPlayer")) {
                         event.setKeepInventory(false);
+                    } else {
+                        event.setKeepInventory(true);
+                        event.getDrops().clear();
+                    }
                 } else {
-                    event.setKeepInventory(true);
-                    event.getDrops().clear();
-                }
-            } else {
                     if (Main.this.config.getBoolean("LoseToNatural")) {
-                            event.setKeepInventory(false);
+                        event.setKeepInventory(false);
                     } else {
                         event.setKeepInventory(true);
                         event.getDrops().clear();
@@ -96,22 +97,22 @@ public class Main extends JavaPlugin{
             if (player.hasPermission("combatkeepinv.expkeep") || player.hasPermission("combatkeepinv.alwayskeep")) {
                 event.setKeepLevel(true);
             } else {
-            if (Main.this.config.getBoolean("KeepLevels")) {
-                if (player1 instanceof Player) {
-                    if (Main.this.config.getBoolean("LoseToPlayer")) {
-                        event.setKeepLevel(false);
+                if (Main.this.config.getBoolean("KeepLevels")) {
+                    if (player1 instanceof Player) {
+                        if (Main.this.config.getBoolean("LoseToPlayer")) {
+                            event.setKeepLevel(false);
+                        } else {
+                            event.setKeepLevel(true);
+                        }
                     } else {
-                        event.setKeepLevel(true);
+                        if (Main.this.config.getBoolean("LoseToNatural")) {
+                            event.setKeepLevel(false);
+                        } else {
+                            event.setKeepLevel(true);
+                        }
                     }
-            } else {
-                    if (Main.this.config.getBoolean("LoseToNatural")) {
-                        event.setKeepLevel(false);
-                    } else {
-                        event.setKeepLevel(true);
-                    }
-                }
-            } else {
-                event.setKeepLevel(false);
+                } else {
+                    event.setKeepLevel(false);
                 }
             }
 
@@ -122,15 +123,15 @@ public class Main extends JavaPlugin{
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (command.getName().equalsIgnoreCase("combatkeepinventoryreload") || label.equalsIgnoreCase("ckireload")) {
-            if (sender.hasPermission("combatkeepinv.reload")){
+            if (sender.hasPermission("combatkeepinv.reload")) {
                 config = YamlConfiguration.loadConfiguration(cfile);
                 sender.sendMessage(ChatColor.GOLD + "CombatKeepInventory has been reloaded!");
-            } else{
+            } else {
                 sender.sendMessage(ChatColor.RED + "You do not have permission!");
             }
         }
         if (command.getName().equalsIgnoreCase("combatkeepinventoryversion") || label.equalsIgnoreCase("ckiversion")) {
-            if (sender.hasPermission("combatkeepinv.version")){
+            if (sender.hasPermission("combatkeepinv.version")) {
                 sender.sendMessage(ChatColor.DARK_GREEN + "Version: " + getDescription().getVersion());
             }
         }
@@ -148,7 +149,8 @@ public class Main extends JavaPlugin{
                         if (Main.this.config.getBoolean("LoseToPlayer")) {
                             this.getConfig().set("LoseToPlayer", Boolean.valueOf(false));
                             this.saveConfig();
-                            sender.sendMessage(ChatColor.GOLD + "Players will no longer lose their items to other Players");
+                            sender.sendMessage(
+                                    ChatColor.GOLD + "Players will no longer lose their items to other Players");
                         } else {
                             this.getConfig().set("LoseToPlayer", Boolean.valueOf(true));
                             this.saveConfig();
@@ -161,7 +163,8 @@ public class Main extends JavaPlugin{
                         if (Main.this.config.getBoolean("LoseToNatural")) {
                             this.getConfig().set("LoseToNatural", Boolean.valueOf(false));
                             this.saveConfig();
-                            sender.sendMessage(ChatColor.GOLD + "Players will no longer lose their items to Natural Causes");
+                            sender.sendMessage(
+                                    ChatColor.GOLD + "Players will no longer lose their items to Natural Causes");
                         } else {
                             this.getConfig().set("LoseToNatural", Boolean.valueOf(true));
                             this.saveConfig();
